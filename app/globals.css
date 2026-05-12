@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 10 10 10;
+    --foreground: 255 255 255;
+  }
+
+  body {
+    background: linear-gradient(135deg, #0A0A0A 0%, #121212 50%, #0A0A0A 100%);
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0A0A0A;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #FFD700, #B8860B);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FFD700;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-empire-gold via-yellow-400 to-empire-gold-dark bg-clip-text text-transparent;
+    background-size: 200% auto;
+    animation: gradient 3s linear infinite;
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+
+  .glow-button {
+    @apply relative overflow-hidden bg-gradient-to-r from-empire-gold to-empire-gold-dark 
+           text-empire-black font-bold py-3 px-8 rounded-xl 
+           transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-empire-gold/50;
+  }
+
+  .glow-button::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent;
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+  }
+
+  .glow-button:hover::before {
+    transform: translateX(100%);
+  }
+
+  .premium-card {
+    @apply bg-gradient-to-br from-empire-charcoal to-empire-slate 
+           border border-white/10 rounded-2xl p-6 
+           hover:border-empire-gold/50 transition-all duration-300
+           hover:shadow-2xl hover:shadow-empire-gold/20;
+  }
+
+  .input-field {
+    @apply w-full bg-empire-slate/50 border border-white/10 rounded-xl 
+           px-4 py-3 text-white placeholder-gray-500
+           focus:outline-none focus:border-empire-gold focus:ring-2 focus:ring-empire-gold/20
+           transition-all duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-gold {
+    @apply badge bg-empire-gold/20 text-empire-gold border border-empire-gold/30;
+  }
+
+  .badge-electric {
+    @apply badge bg-empire-electric/20 text-empire-electric border border-empire-electric/30;
+  }
+
+  .badge-purple {
+    @apply badge bg-empire-purple/20 text-empire-purple border border-empire-purple/30;
+  }
+}
+
+@layer utilities {
+  .text-shadow-gold {
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 215, 0, 0.2),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Tailwind Typography for Markdown */
+  .prose-invert {
+    --tw-prose-body: #d1d5db;
+    --tw-prose-headings: #FFD700;
+    --tw-prose-lead: #9ca3af;
+    --tw-prose-links: #00D4FF;
+    --tw-prose-bold: #FFD700;
+    --tw-prose-counters: #FFD700;
+    --tw-prose-bullets: #FFD700;
+  }
+}
